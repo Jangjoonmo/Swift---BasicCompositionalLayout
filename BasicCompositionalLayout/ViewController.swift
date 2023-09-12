@@ -20,7 +20,7 @@ class ViewController: UIViewController {
         collectionView.setCollectionViewLayout(createLayout(), animated: true)
         
         setDataSource()
-        
+        setSnapShot()
     }
 
     private func setDataSource() {
@@ -31,6 +31,21 @@ class ViewController: UIViewController {
             
             return cell
         })
+    }
+    
+    private func setSnapShot() { 
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
+        
+        snapshot.appendSections([Section(id: "Banner")])    //이렇게 사용하면 안됨. 똑같은 섹션 사용안됨. 아이디를 구별해야함
+        let bannerItems = [
+            Item.banner(HomeItem(title: "교촌 치킨", imageUrl: "https://www.allrecipes.com/thmb/SoBuPU73KcbYHl3Kp3j8Xx4A3fc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/8805-CrispyFriedChicken-mfs-3x2-072-d55b8406d4ae45709fcdeb58a04143c2.jpg")),
+            Item.banner(HomeItem(title: "굽네 치킨", imageUrl: "https://www.allrecipes.com/thmb/SoBuPU73KcbYHl3Kp3j8Xx4A3fc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/8805-CrispyFriedChicken-mfs-3x2-072-d55b8406d4ae45709fcdeb58a04143c2.jpg")),
+            Item.banner(HomeItem(title: "네네 치킨", imageUrl: "https://www.allrecipes.com/thmb/SoBuPU73KcbYHl3Kp3j8Xx4A3fc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/8805-CrispyFriedChicken-mfs-3x2-072-d55b8406d4ae45709fcdeb58a04143c2.jpg"))
+            
+        ]
+        snapshot.appendItems(bannerItems, toSection: Section(id: "Banner"))
+        
+        dataSource?.apply(snapshot)
     }
     
     private func createLayout() -> UICollectionViewCompositionalLayout {

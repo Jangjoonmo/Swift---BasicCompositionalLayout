@@ -20,6 +20,7 @@ class ViewController: UIViewController {
         setUI()
         
         collectionView.register(BannerCollectionViewCell.self, forCellWithReuseIdentifier: BannerCollectionViewCell.id)
+        collectionView.register(NormalCarouselCollectionViewCell.self, forCellWithReuseIdentifier: NormalCarouselCollectionViewCell.id)
         collectionView.setCollectionViewLayout(createLayout(), animated: true)
         
         setDataSource()

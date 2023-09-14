@@ -18,6 +18,7 @@
 		947FB8CA2AB08E6A001315D1 /* BannerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947FB8C92AB08E6A001315D1 /* BannerCollectionViewCell.swift */; };
 		947FB8CD2AB08F3A001315D1 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 947FB8CC2AB08F3A001315D1 /* SnapKit */; };
 		947FB8D02AB09834001315D1 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 947FB8CF2AB09834001315D1 /* Kingfisher */; };
+		947FB8D22AB313DF001315D1 /* NormalCarouselCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947FB8D12AB313DF001315D1 /* NormalCarouselCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		947FB8C12AB08B23001315D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		947FB8C72AB08DDF001315D1 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		947FB8C92AB08E6A001315D1 /* BannerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerCollectionViewCell.swift; sourceTree = "<group>"; };
+		947FB8D12AB313DF001315D1 /* NormalCarouselCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalCarouselCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 				947FB8B22AB08B23001315D1 /* SceneDelegate.swift */,
 				947FB8B42AB08B23001315D1 /* ViewController.swift */,
 				947FB8C92AB08E6A001315D1 /* BannerCollectionViewCell.swift */,
+				947FB8D12AB313DF001315D1 /* NormalCarouselCollectionViewCell.swift */,
 				947FB8C72AB08DDF001315D1 /* Item.swift */,
 				947FB8B62AB08B23001315D1 /* Main.storyboard */,
 				947FB8BC2AB08B23001315D1 /* Assets.xcassets */,
@@ -165,6 +168,7 @@
 				947FB8B12AB08B23001315D1 /* AppDelegate.swift in Sources */,
 				947FB8BB2AB08B23001315D1 /* BasicCompositionalLayout.xcdatamodeld in Sources */,
 				947FB8B32AB08B23001315D1 /* SceneDelegate.swift in Sources */,
+				947FB8D22AB313DF001315D1 /* NormalCarouselCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

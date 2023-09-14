@@ -103,8 +103,8 @@ class ViewController: UIViewController {
                return self?.createBannerSection()
             case 1:
                 return self?.createNormalCarouselSection()
-//            case 2:
-                //third
+            case 2:
+                return self?.createListCarouselSection()
                 
             default:
                 return self?.createBannerSection()
@@ -116,7 +116,7 @@ class ViewController: UIViewController {
     
     private func createBannerSection() -> NSCollectionLayoutSection {
         //item
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(1.0))
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
         //group
@@ -131,7 +131,7 @@ class ViewController: UIViewController {
     }
     
     private func createNormalCarouselSection() -> NSCollectionLayoutSection {
-        let itemSize =  NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(1.0))
+        let itemSize =  NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 15)
         
@@ -145,6 +145,18 @@ class ViewController: UIViewController {
         return section
     }
 
+    private func createListCarouselSection() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(250))
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, repeatingSubitem: item, count: 3)
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .continuous
+        
+        return section
+    }
 }
 
 //컬렉션뷰 cell UI - 등록

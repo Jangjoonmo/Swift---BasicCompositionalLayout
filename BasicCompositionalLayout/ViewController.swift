@@ -31,7 +31,6 @@ class ViewController: UIViewController {
     
     private func setUI() {
         self.view.addSubview(collectionView)
-        collectionView.backgroundColor = .red
         collectionView.snp.makeConstraints{
             $0.edges.equalToSuperview()
         }
@@ -93,6 +92,10 @@ class ViewController: UIViewController {
     }
     
     private func createLayout() -> UICollectionViewCompositionalLayout {
+        
+        let config = UICollectionViewCompositionalLayoutConfiguration()
+        config.interSectionSpacing = 30
+        
         return UICollectionViewCompositionalLayout(sectionProvider: { [weak self] sectionIndex, _ in
             
             switch sectionIndex {
@@ -108,7 +111,7 @@ class ViewController: UIViewController {
             }
             
             return self?.createBannerSection()
-        })
+        }, configuration: config)
     }
     
     private func createBannerSection() -> NSCollectionLayoutSection {
@@ -130,12 +133,14 @@ class ViewController: UIViewController {
     private func createNormalCarouselSection() -> NSCollectionLayoutSection {
         let itemSize =  NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 15)
         
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.7), heightDimension: .absolute(180))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20)
         
         return section
     }

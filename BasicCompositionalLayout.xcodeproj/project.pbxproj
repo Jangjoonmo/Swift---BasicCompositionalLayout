@@ -70,10 +70,10 @@
 			children = (
 				947FB8B02AB08B23001315D1 /* AppDelegate.swift */,
 				947FB8B22AB08B23001315D1 /* SceneDelegate.swift */,
+				947FB8C72AB08DDF001315D1 /* Item.swift */,
 				947FB8B42AB08B23001315D1 /* ViewController.swift */,
 				947FB8C92AB08E6A001315D1 /* BannerCollectionViewCell.swift */,
 				947FB8D12AB313DF001315D1 /* NormalCarouselCollectionViewCell.swift */,
-				947FB8C72AB08DDF001315D1 /* Item.swift */,
 				947FB8B62AB08B23001315D1 /* Main.storyboard */,
 				947FB8BC2AB08B23001315D1 /* Assets.xcassets */,
 				947FB8BE2AB08B23001315D1 /* LaunchScreen.storyboard */,

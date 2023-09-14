@@ -9,7 +9,9 @@ import UIKit
 
 
 class ViewController: UIViewController {
-
+    
+    let imageUrl = "https://www.allrecipes.com/thmb/SoBuPU73KcbYHl3Kp3j8Xx4A3fc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/8805-CrispyFriedChicken-mfs-3x2-072-d55b8406d4ae45709fcdeb58a04143c2.jpg"
+    
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: .init())
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
     
@@ -49,6 +51,12 @@ class ViewController: UIViewController {
             case .normalCarousel(let item):
                 //cell 리턴
                 
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NormalCarouselCollectionViewCell.id, for: indexPath) as? NormalCarouselCollectionViewCell else { return UICollectionViewCell()}
+                
+                cell.config(imageUrl: item.imageUrl, title: item.title, subTitle: item.subTitle)
+                
+                return cell
+                
             default:
                 return UICollectionViewCell()
             }
@@ -61,13 +69,26 @@ class ViewController: UIViewController {
         
         snapshot.appendSections([Section(id: "Banner")])    //이렇게 사용하면 안됨. 똑같은 섹션 사용안됨. 아이디를 구별해야함
         let bannerItems = [
-            Item.banner(HomeItem(title: "교촌 치킨", imageUrl: "https://www.allrecipes.com/thmb/SoBuPU73KcbYHl3Kp3j8Xx4A3fc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/8805-CrispyFriedChicken-mfs-3x2-072-d55b8406d4ae45709fcdeb58a04143c2.jpg")),
-            Item.banner(HomeItem(title: "굽네 치킨", imageUrl: "https://www.allrecipes.com/thmb/SoBuPU73KcbYHl3Kp3j8Xx4A3fc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/8805-CrispyFriedChicken-mfs-3x2-072-d55b8406d4ae45709fcdeb58a04143c2.jpg")),
-            Item.banner(HomeItem(title: "네네 치킨", imageUrl: "https://www.allrecipes.com/thmb/SoBuPU73KcbYHl3Kp3j8Xx4A3fc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/8805-CrispyFriedChicken-mfs-3x2-072-d55b8406d4ae45709fcdeb58a04143c2.jpg"))
+            Item.banner(HomeItem(title: "교촌 치킨", imageUrl: imageUrl)),
+            Item.banner(HomeItem(title: "굽네 치킨", imageUrl: imageUrl)),
+            Item.banner(HomeItem(title: "네네 치킨", imageUrl: imageUrl))
             
         ]
         snapshot.appendItems(bannerItems, toSection: Section(id: "Banner"))
         
+        snapshot.appendSections([Section(id: "NormalCarousel")])
+        
+        let normalItems = [
+            Item.normalCarousel(HomeItem(title: "교촌 치킨", subTitle: "간장 치킨", imageUrl: imageUrl)),
+            Item.normalCarousel(HomeItem(title: "굽네 치킨", subTitle: "오븐 치킨", imageUrl: imageUrl)),
+            Item.normalCarousel(HomeItem(title: "푸라닥 치킨", subTitle: "차이니즈 치킨", imageUrl: imageUrl)),
+            Item.normalCarousel(HomeItem(title: "후참잘", subTitle: "후라이드 치킨", imageUrl: imageUrl)),
+            Item.normalCarousel(HomeItem(title: "페리카나", subTitle: "양념 치킨", imageUrl: imageUrl)),
+            Item.normalCarousel(HomeItem(title: "BHC", subTitle: "맛초킹", imageUrl: imageUrl))
+
+        ]
+        
+        snapshot.appendItems(normalItems, toSection: Section(id: "NormalCarousel"))
         dataSource?.apply(snapshot)
     }
     
@@ -76,10 +97,10 @@ class ViewController: UIViewController {
             
             switch sectionIndex {
             case 0:
-                self?.createBannerSection()
+               return self?.createBannerSection()
             case 1:
-                //second
-            case 2:
+                return self?.createNormalCarouselSection()
+//            case 2:
                 //third
                 
             default:
@@ -102,6 +123,19 @@ class ViewController: UIViewController {
         //section
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .groupPaging
+        
+        return section
+    }
+    
+    private func createNormalCarouselSection() -> NSCollectionLayoutSection {
+        let itemSize =  NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(1.0))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.7), heightDimension: .absolute(180))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .continuous
         
         return section
     }
